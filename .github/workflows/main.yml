@@ -28,12 +28,11 @@ jobs:
     - name: Run Docker container
       run: |
         docker run --rm \
-          -w /data \
           -v ${{ github.workspace }}:/data \
           -v ${{ github.workspace }}:/app \
-          -e auth_token=${{ secrets.AUTH_TOKEN }} \
-          -e OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
-          -e account_key=${{ secrets.ACCOUNT_KEY }} \
-          -e USERNAME=${{ secrets.USERNAME }} \
-          -e PROJECTNAME=${{ secrets.PROJECTNAME }} \
+          -e auth_token="${{ secrets.AUTH_TOKEN }}" \
+          -e OPEN_API_KEY="${{ secrets.OPEN_API_KEY }}" \
+          -e account_key="${{ secrets.ACCOUNT_KEY }}" \
+          -e USERNAME="${{ secrets.USERNAME }}" \
+          -e PROJECTNAME="${{ secrets.PROJECTNAME }}" \
           ${{ secrets.ACR_URL }}/sbom:action
