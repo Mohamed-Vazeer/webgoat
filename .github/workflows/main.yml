@@ -21,12 +21,4 @@ jobs:
       run: docker pull ${{ secrets.ACR_URL }}/sbom:action
 
     - name: Run Docker container
-      run: |
-        docker run --rm \
-          -v ${{ github.workspace }}:/data \
-          -e auth_token=${{ secrets.AUTH_TOKEN }} \
-          -e OPEN_API_KEY=${{ secrets.OPEN_API_KEY }} \
-          -e Account_Key=${{ secrets.ACCOUNT_KEY }} \
-          -e USERNAME=${{ secrets.USERNAME }} \
-          -e PROJECTNAME=${{ secrets.PROJECTNAME }} \
-          ${{ secrets.ACR_URL }}/sbom:action
+      run: docker run --rm -v ${{ github.workspace }}:/data -e auth_token=${{ secrets.AUTH_TOKEN }} -e openai_api_key=${{ secrets.OPENAI_API_KEY }} -e account_key=${{ secrets.ACCOUNT_KEY }} -e USERNAME=${{ secrets.USERNAME }} -e PROJECTNAME=${{ secrets.PROJECTNAME }} ${{ secrets.ACR_URL }}/sbom:action
